@@ -1,26 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
-const ACTION_TYPES = {
-  addUser: "ADD_USER"
-}
-
-interface Actions {
-  type: string,
-  payload: any;
-}
-
-interface Users {
-  id: string;
+export interface Users {
+  id?: string;
   name: string;
   email: string;
   phone: string;
   address: string;
 }
 
-interface Orders {
-  id: number;
-  userId: number;
+export interface Orders {
+  id?: number;
   userName: string;
   itemCount: number;
   address: string;

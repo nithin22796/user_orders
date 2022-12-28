@@ -1,44 +1,34 @@
-import * as React from 'react';
+import React from 'react'
+import Styles from "./styles.module.css";
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Form from '../../components/users/form';
+import Table from "../../core/table/table";
+import Form from "./form";
+import { Column } from '../../components/users/meta';
 
-interface Props {
-  title: string;
-  children?: any;
-  isOpen: boolean;
-  cancel: () => void;
-  submit: any;
+interface IModel {
+  heading: string;
+  btnLabel: string;
+  btnClick: () => void;
+  columns: Column[];
+  data: any;
+  showForm: boolean;
+  formAction: any;
 }
 
-export default function FormDialog(props: Props) {
-  const getData = (data: any) => {
-    console.log(data);
-  }
-  const renderForm = (title: string) => {
-    switch (title) {
-      case 'Add User':
-        // return <Form  action={props.submit}/>
-
-      default:
-        break;
-    }
-  }
+function Model(props: IModel) {
   return (
-    <div>
-      <Dialog open={props.isOpen} onClose={props.cancel}>
-        <DialogTitle>{props.title}</DialogTitle>
-        <DialogContent>
-          {/* {renderForm(props.title)} */}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={props.cancel}>Cancel</Button>
-          <Button onClick={props.submit}>{props.title}</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+    <>
+      <div className={`${Styles.user_header}`}>
+        <h1 className={`${Styles.user_headline}`}>{props.heading}</h1>
+        <Button className={`${Styles.user_button}`} variant="outlined" onClick={props.btnClick}>{props.btnLabel}</Button>
+      </div>
+      {/* <DataTable data={users} /> */}
+      <Table columns={props.columns} data={props.data} />
+      {props.showForm ? (
+          <Form isOpen={props.showForm} action={props.formAction} cancel={props.btnClick} title={props.btnLabel} />
+      ) : null}
+    </>
+  )
 }
+
+export default Model

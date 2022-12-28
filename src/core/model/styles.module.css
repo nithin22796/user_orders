@@ -1,0 +1,20 @@
+.user_header {
+  display: flex;
+  width: 100%;
+}
+
+.user_headline {
+  width: 85%;
+}
+
+.user_button {
+  margin: 2% !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
